@@ -24,6 +24,12 @@ namespace MobileAuslesen.Controller.StaticController
                 Match match = Regex.Match(value, @"\d+");
                 if (match.Success) value = match.Value;
 
+                value = value.Replace(" ", "");
+
+                if (value.Contains("/")) value = value.Split('/')[0];
+
+                if (value == "Schalter") value = "Schaltgetriebe";
+
                 var enumValue = Enum.Parse(targetType, value, true);
                 return enumValue;
             }

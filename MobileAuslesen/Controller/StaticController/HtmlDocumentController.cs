@@ -12,10 +12,15 @@ namespace MobileAuslesen.Controller.StaticController
 {
     internal class HtmlDocumentController
     {
-        public static Anzeige CreateAnzeige(HtmlDocument doc, string url)
+        public static Anzeige CreateAnzeige(WebSocketData data)
         {
+            if (data == null || string.IsNullOrEmpty(data.HtmlCode) || string.IsNullOrEmpty(data.Url)) return null;
+
+            var doc = new HtmlDocument();
+            doc.LoadHtml(data.HtmlCode);
+
             var anzeige = AnzeigenController.GetAnzeige(doc);
-            anzeige.URL = url;
+            anzeige.URL = data.Url;
 
             return anzeige;
         }

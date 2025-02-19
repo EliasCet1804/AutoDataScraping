@@ -21,7 +21,7 @@ namespace MobileAuslesen.Core
         {
             None = 0,
             Automatik = 1,
-            Schalter = 2,
+            Schaltgetriebe = 2,
         }
 
         public enum Fahrzeugart
@@ -32,6 +32,7 @@ namespace MobileAuslesen.Core
             Cabrio = 3,
             Limousine = 4,
             SUV = 5,
+            Kleinwagen = 6,
         }
 
         public enum Schadstoffklassen

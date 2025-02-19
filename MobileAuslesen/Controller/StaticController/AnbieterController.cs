@@ -81,7 +81,11 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wöhle TelNr-Node und füge ggf. anbieter hinzu
-            var node = doc.DocumentNode.SelectSingleNode("//div[@class='QbZvr']").FirstChild.SelectSingleNode("span");
+            var node = doc.DocumentNode.SelectSingleNode("//div[@class='QbZvr']");
+            if (node == null) return null;
+
+            node = node.FirstChild.SelectSingleNode("span");
+            if (node == null) return null;
 
             //TelNummer zurückgeben
             return node.InnerText;

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Fleck, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fleck.1.2.0\lib\net45\Fleck.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.11.72.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.11.72\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -52,14 +55,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\InstanzController\WebSiteReader.cs" />
+    <Compile Include="Controller\InstanzController\WebSocketController.cs" />
     <Compile Include="Controller\StaticController\AnbieterController.cs" />
     <Compile Include="Controller\StaticController\AnzeigenController.cs" />
     <Compile Include="Controller\StaticController\AutoController.cs" />
     <Compile Include="Controller\StaticController\ConvertController.cs" />
     <Compile Include="Controller\StaticController\ExportController.cs" />
     <Compile Include="Controller\StaticController\HtmlDocumentController.cs" />
+    <Compile Include="Controller\StaticController\StorageController.cs" />
     <Compile Include="Core\EnumDefinition.cs" />
+    <Compile Include="Events\WebSocketEventPool.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +74,7 @@
     <Compile Include="Models\Anbieter.cs" />
     <Compile Include="Models\Anzeige.cs" />
     <Compile Include="Models\Auto.cs" />
+    <Compile Include="Models\WebSocketData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
@@ -99,7 +105,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Events\" />
     <Folder Include="Interfaces\" />
     <Folder Include="UI\" />
   </ItemGroup>
