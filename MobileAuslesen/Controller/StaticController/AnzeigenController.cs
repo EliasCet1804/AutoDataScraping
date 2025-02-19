@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using MobileAuslesen.Controller.InstanzController;
 
 namespace MobileAuslesen.Controller.StaticController
 {
@@ -92,6 +93,36 @@ namespace MobileAuslesen.Controller.StaticController
 
             return preis;
         }
+
+        public static async Task<List<Anzeige>> CheckVerfuegbar(List<Anzeige> anzeigenListe)
+        {
+            //Vorabüberprüfung
+            if (anzeigenListe == null) return null;
+
+            //Initalisiere einen neuen WebSiteReader
+            WebSiteReader reader = new WebSiteReader();
+
+            //Initialisere eine neue AnzeigenListe, die zurückgegeben wird
+            List<Anzeige> result = new List<Anzeige>();
+
+            //Gehe jede anzeige in der alten anzeigenliste durch
+            foreach (Anzeige anzeige in anzeigenListe)
+            {
+                //Überprüfe, ob url gefüllt und ob url korrekt ist
+                if (string.IsNullOrEmpty(anzeige.URL) || Uri.TryCreate(anzeige.URL, UriKind.Absolute, out Uri uriresult) == false) continue;
+
+                //Lese website ein und überprüfe das htmldocument, wenn null ist die anzeige nicht mehr verfügbar
+                var htmldoc = await reader.GetHtmlDocument(anzeige.URL);
+                if (htmldoc == null) continue;
+
+                //Füge die Anzeige dem result hinzu
+                result.Add(anzeige);
+            }
+
+            //Gebe result zurück
+            return result;
+        }
+
 
     }
 }

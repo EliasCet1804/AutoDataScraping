@@ -16,10 +16,12 @@ namespace MobileAuslesen
 {
     public partial class frmMain : Form
     {
-
+        #region Variablen
         private WebSocketController WebsocketController = new WebSocketController();
         private List<Anzeige> AnzeigeListe = new List<Anzeige>();
+        #endregion
 
+        #region Start
         public frmMain()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace MobileAuslesen
             Application.Idle += OnLoaded;
         }
 
-        private void OnLoaded(object sender, EventArgs e)
+        private async void OnLoaded(object sender, EventArgs e)
         {
             Application.Idle -= OnLoaded;
 
@@ -38,13 +40,18 @@ namespace MobileAuslesen
             var anzeigenListe = StorageController.GetAnzeigeListeFromDrive();
             if (anzeigenListe != null) this.AnzeigeListe = anzeigenListe;
 
+            //Filter nicht aktuelle anzeigen raus
+            anzeigenListe = await AnzeigenController.CheckVerfuegbar(anzeigenListe);
+
             //füge AnzeigenListe der BindingSource hinzu
             bsAnzeigen.DataSource = AnzeigeListe;
 
             //verdrahte das MessageReceive Event 
             WebSocketEventPool.MessageReceive += OnMessageReceive;
         }
+        #endregion
 
+        #region Custom Events
         private void OnMessageReceive(object sender, WebSocketData e)
         {
             if (this.InvokeRequired)
@@ -69,7 +76,9 @@ namespace MobileAuslesen
             }
 
         }
+        #endregion
 
+        #region Events
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Vorabüberprüfung
@@ -79,5 +88,22 @@ namespace MobileAuslesen
             StorageController.SaveAnzeigenData(AnzeigeListe);
 
         }
+
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
