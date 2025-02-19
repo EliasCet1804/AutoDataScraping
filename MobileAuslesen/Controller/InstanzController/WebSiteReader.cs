@@ -26,7 +26,7 @@ namespace MobileAuslesen.Controller.InstanzController
 
         #region Methoden
 
-        internal async Task<HtmlDocument> GetHtmlDocument(string url)
+        internal async Task<string> GetHtmlCode(string url)
         {
             // Vorabüberprüfung
             if (string.IsNullOrEmpty(url) || HttpClient == null) return null;
@@ -36,8 +36,28 @@ namespace MobileAuslesen.Controller.InstanzController
                 // User-Agent setzen, um wie ein Browser zu erscheinen
                 HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
 
-                // HTML von der URL abrufen
-                string html = await HttpClient.GetStringAsync(url);
+                //Lese html und gebe zurück
+                return await HttpClient.GetStringAsync(url);
+
+            } catch (HttpRequestException ex)
+            {
+                // Ausnahmebehandlung, falls die Anfrage fehlschlägt
+                Console.WriteLine($"Fehler beim Abrufen der URL: {ex.Message}");
+                return null;
+            }
+        }
+
+
+        internal async Task<HtmlDocument> GetHtmlDocument(string url)
+        {
+            // Vorabüberprüfung
+            if (string.IsNullOrEmpty(url) || HttpClient == null) return null;
+
+            try
+            {
+                //Bekomme htmlCode
+                var html = await GetHtmlCode(url);
+                if (html == null) return null;
 
                 // HTML-Dokument laden
                 var document = new HtmlDocument();

@@ -2,15 +2,18 @@
 using MobileAuslesen.Controller.StaticController;
 using MobileAuslesen.Events;
 using MobileAuslesen.Models;
+using MobileAuslesen.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Animation;
 
 namespace MobileAuslesen
 {
@@ -92,17 +95,42 @@ namespace MobileAuslesen
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            using (frmNew frm = new frmNew())
+            {
+                frm.ShowDialog();
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            //Vorabüberprüfung
+            if (dataGridView1.SelectedRows.Count < 1) return;
+
+            var index = dataGridView1.SelectedRows[0].Index;
+            if (index < 0 || index >= AnzeigeListe.Count) return;
+
+            AnzeigeListe.RemoveAt(index);
+
+            bsAnzeigen.ResetBindings(false);
 
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
+            //Vorabüberprüfung
+            if (dataGridView1.SelectedRows.Count < 1) return;
 
+            var index = dataGridView1.SelectedRows[0].Index;
+            if (index < 0 || index >= AnzeigeListe.Count) return;
+
+            Anzeige anzeige = AnzeigeListe[index];
+
+            Process.Start(anzeige.URL);
+
+            //using (frmAnzeige frm = new frmAnzeige(anzeige))
+            //{
+            //    frm.ShowDialog();
+            //}
         }
         #endregion
     }
