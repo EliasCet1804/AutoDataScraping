@@ -33,7 +33,8 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOeffnen = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.pnlGrundDaten = new System.Windows.Forms.Panel();
+            this.pnlInformationen = new System.Windows.Forms.Panel();
+            this.pnlBeschreibung = new System.Windows.Forms.Panel();
             this.pnlBar.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.SuspendLayout();
@@ -82,21 +83,30 @@
             // 
             // pnlMain
             // 
-            this.pnlMain.Controls.Add(this.pnlGrundDaten);
+            this.pnlMain.Controls.Add(this.pnlBeschreibung);
+            this.pnlMain.Controls.Add(this.pnlInformationen);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 43);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(800, 407);
             this.pnlMain.TabIndex = 4;
             // 
-            // pnlGrundDaten
+            // pnlInformationen
             // 
-            this.pnlGrundDaten.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlGrundDaten.Location = new System.Drawing.Point(0, 0);
-            this.pnlGrundDaten.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.pnlGrundDaten.Name = "pnlGrundDaten";
-            this.pnlGrundDaten.Size = new System.Drawing.Size(800, 239);
-            this.pnlGrundDaten.TabIndex = 3;
+            this.pnlInformationen.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlInformationen.Location = new System.Drawing.Point(0, 0);
+            this.pnlInformationen.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
+            this.pnlInformationen.Name = "pnlInformationen";
+            this.pnlInformationen.Size = new System.Drawing.Size(341, 407);
+            this.pnlInformationen.TabIndex = 3;
+            // 
+            // pnlBeschreibung
+            // 
+            this.pnlBeschreibung.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlBeschreibung.Location = new System.Drawing.Point(420, 0);
+            this.pnlBeschreibung.Name = "pnlBeschreibung";
+            this.pnlBeschreibung.Size = new System.Drawing.Size(380, 407);
+            this.pnlBeschreibung.TabIndex = 4;
             // 
             // frmAnzeige
             // 
@@ -119,6 +129,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOeffnen;
         private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.Panel pnlGrundDaten;
+        private System.Windows.Forms.Panel pnlInformationen;
+        private System.Windows.Forms.Panel pnlBeschreibung;
     }
 }

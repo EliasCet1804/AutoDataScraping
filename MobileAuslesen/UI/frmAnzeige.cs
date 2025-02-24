@@ -1,4 +1,5 @@
-﻿using MobileAuslesen.Events;
+﻿using MobileAuslesen.Controller.StaticController;
+using MobileAuslesen.Events;
 using MobileAuslesen.Models;
 using MobileAuslesen.UI.UserControls;
 using System;
@@ -34,12 +35,40 @@ namespace MobileAuslesen.UI
         {
             Application.Idle -= OnLoaded;
 
-            var ucgd = new ucGrundDaten(this.Anzeige);
+            pnlInformationen.Controls.Add(CreateGrundLagenControl());
+            pnlInformationen.Controls.Add(CreateSonstigeInformationen());
 
-            pnlGrundDaten.Controls.Add(ucgd);
-            ucgd.Dock = DockStyle.Left;
+        }
 
-            this.pnlGrundDaten.Size = new Size(this.pnlGrundDaten.Size.Width, ucgd.Size.Height);
+        private ucTextControl CreateSonstigeInformationen()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("Leistung", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Leistung, "PS"));
+            dict.Add("Kurzbeschreibung", this.Anzeige.Kurzbeschreibung);
+            dict.Add("Preis", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Preis, "€"));
+            dict.Add("Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Kilometerstand, "km"));
+            dict.Add("Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Anzeige.Auto.Erstzulassung));
+
+            ucTextControl uc = new ucTextControl(dict, "Sonstige Informationen");
+            uc.Dock = DockStyle.Left;
+
+            return uc;
+        }
+
+        private ucTextControl CreateGrundLagenControl()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("Titel", this.Anzeige.Titel);
+            dict.Add("Kurzbeschreibung", this.Anzeige.Kurzbeschreibung);
+            dict.Add("Preis", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Preis, "€"));
+            dict.Add("Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Kilometerstand, "km"));
+            dict.Add("Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Anzeige.Auto.Erstzulassung));
+
+            ucTextControl uc = new ucTextControl(dict, "Grundlagen");
+            uc.Dock = DockStyle.Left;
+
+            return uc;
+
         }
 
         private void btnOeffnen_Click_1(object sender, EventArgs e)
