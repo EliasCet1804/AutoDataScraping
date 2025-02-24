@@ -95,6 +95,18 @@
     <Compile Include="UI\frmNew.Designer.cs">
       <DependentUpon>frmNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserControls\ucGrundDaten.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\ucGrundDaten.Designer.cs">
+      <DependentUpon>ucGrundDaten.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\ucTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\ucTextBox.Designer.cs">
+      <DependentUpon>ucTextBox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmNew.resx">
       <DependentUpon>frmNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\ucGrundDaten.resx">
+      <DependentUpon>ucGrundDaten.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\ucTextBox.resx">
+      <DependentUpon>ucTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\MobileAuslesen.Models.Anzeige.datasource" />

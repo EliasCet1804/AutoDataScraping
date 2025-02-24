@@ -16,6 +16,8 @@ namespace MobileAuslesen.Controller.InstanzController
     {
         private WebSocketServer WebSocketServer;
 
+        private static List<string> erlaubteDomains = new List<string> { "mobile.de" };
+
         public WebSocketController()
         {
             this.WebSocketServer = new WebSocketServer("ws://127.0.0.1:8080");
@@ -32,6 +34,8 @@ namespace MobileAuslesen.Controller.InstanzController
                     Console.WriteLine($"🌍 URL erhalten: {data.Url}");
                     Console.WriteLine($"📄 HTML-Inhalt erhalten ({data.HtmlCode.Length} Zeichen)");
 
+                    if (isErlaubteURL(data.Url) == false) return;
+
                     data.HtmlCode = WebUtility.HtmlDecode(data.HtmlCode);
 
                     WebSocketEventPool.TriggerMessageReceive(data);
@@ -41,6 +45,21 @@ namespace MobileAuslesen.Controller.InstanzController
             Console.WriteLine("WebSocket-Server läuft auf ws://127.0.0.1:8080");
             Console.ReadLine();
         }
+
+        private bool isErlaubteURL(string url)
+        {
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri))
+                return false;
+
+            foreach (var domain in erlaubteDomains)
+            {
+                if (uri.Host.EndsWith(domain, StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+
+            return false;
+        }
+
 
     }
 }

@@ -125,12 +125,12 @@ namespace MobileAuslesen
 
             Anzeige anzeige = AnzeigeListe[index];
 
-            Process.Start(anzeige.URL);
+            //Process.Start(anzeige.URL);
 
-            //using (frmAnzeige frm = new frmAnzeige(anzeige))
-            //{
-            //    frm.ShowDialog();
-            //}
+            using (frmAnzeige frm = new frmAnzeige(anzeige))
+            {
+                frm.ShowDialog();
+            }
         }
         #endregion
     }
