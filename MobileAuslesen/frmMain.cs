@@ -49,8 +49,9 @@ namespace MobileAuslesen
             //füge AnzeigenListe der BindingSource hinzu
             bsAnzeigen.DataSource = AnzeigeListe;
 
-            //verdrahte das MessageReceive Event 
+            //verdrahte die CustomEvents
             WebSocketEventPool.MessageReceive += OnMessageReceive;
+            EventPool.DeleteAnzeige += OnDeleteAnzeige;
         }
         #endregion
 
@@ -79,6 +80,27 @@ namespace MobileAuslesen
             }
 
         }
+
+        private void OnDeleteAnzeige(object sender, Anzeige e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => OnDeleteAnzeige(sender, e)));
+            } else
+            {
+                //Vorabüberprüfung
+                if (e == null) return;
+
+                //Entferne Anzeige aus Liste
+                AnzeigeListe.Remove(e);
+
+                //Update die Oberfläche
+                this.Validate();
+                bsAnzeigen.ResetBindings(false);
+
+            }
+        }
+
         #endregion
 
         #region Events
@@ -91,6 +113,7 @@ namespace MobileAuslesen
             StorageController.SaveAnzeigenData(AnzeigeListe);
 
         }
+
 
 
         private void btnAdd_Click(object sender, EventArgs e)

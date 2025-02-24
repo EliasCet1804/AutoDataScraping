@@ -28,43 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.pnlBar = new System.Windows.Forms.Panel();
+            this.btnAddToExport = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnOeffnen = new System.Windows.Forms.Button();
+            this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlGrundDaten = new System.Windows.Forms.Panel();
+            this.pnlBar.SuspendLayout();
+            this.pnlMain.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // pnlBar
+            // 
+            this.pnlBar.Controls.Add(this.btnAddToExport);
+            this.pnlBar.Controls.Add(this.btnDelete);
+            this.pnlBar.Controls.Add(this.btnOeffnen);
+            this.pnlBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBar.Location = new System.Drawing.Point(0, 0);
+            this.pnlBar.MaximumSize = new System.Drawing.Size(0, 43);
+            this.pnlBar.MinimumSize = new System.Drawing.Size(0, 43);
+            this.pnlBar.Name = "pnlBar";
+            this.pnlBar.Size = new System.Drawing.Size(800, 43);
+            this.pnlBar.TabIndex = 3;
+            // 
+            // btnAddToExport
+            // 
+            this.btnAddToExport.Location = new System.Drawing.Point(174, 12);
+            this.btnAddToExport.Name = "btnAddToExport";
+            this.btnAddToExport.Size = new System.Drawing.Size(75, 23);
+            this.btnAddToExport.TabIndex = 2;
+            this.btnAddToExport.Text = "Zum Export hinzufügen";
+            this.btnAddToExport.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(93, 12);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 1;
+            this.btnDelete.Text = "Löschen";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnOeffnen
             // 
-            this.btnOeffnen.Location = new System.Drawing.Point(713, 12);
+            this.btnOeffnen.Location = new System.Drawing.Point(12, 12);
             this.btnOeffnen.Name = "btnOeffnen";
             this.btnOeffnen.Size = new System.Drawing.Size(75, 23);
-            this.btnOeffnen.TabIndex = 1;
-            this.btnOeffnen.Text = "Öffne Anzeige";
+            this.btnOeffnen.TabIndex = 0;
+            this.btnOeffnen.Text = "Öffnen";
             this.btnOeffnen.UseVisualStyleBackColor = true;
-            this.btnOeffnen.Click += new System.EventHandler(this.btnOeffnen_Click);
+            this.btnOeffnen.Click += new System.EventHandler(this.btnOeffnen_Click_1);
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.Controls.Add(this.pnlGrundDaten);
+            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.Location = new System.Drawing.Point(0, 43);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(800, 407);
+            this.pnlMain.TabIndex = 4;
             // 
             // pnlGrundDaten
             // 
+            this.pnlGrundDaten.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlGrundDaten.Location = new System.Drawing.Point(0, 0);
             this.pnlGrundDaten.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.pnlGrundDaten.Name = "pnlGrundDaten";
-            this.pnlGrundDaten.Size = new System.Drawing.Size(200, 100);
-            this.pnlGrundDaten.TabIndex = 2;
+            this.pnlGrundDaten.Size = new System.Drawing.Size(800, 239);
+            this.pnlGrundDaten.TabIndex = 3;
             // 
             // frmAnzeige
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlGrundDaten);
-            this.Controls.Add(this.btnOeffnen);
+            this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.pnlBar);
             this.Name = "frmAnzeige";
             this.Text = "frmAnzeige";
+            this.pnlBar.ResumeLayout(false);
+            this.pnlMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+        private System.Windows.Forms.Panel pnlBar;
+        private System.Windows.Forms.Button btnAddToExport;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOeffnen;
+        private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel pnlGrundDaten;
     }
 }

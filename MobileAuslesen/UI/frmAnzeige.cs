@@ -1,4 +1,5 @@
-﻿using MobileAuslesen.Models;
+﻿using MobileAuslesen.Events;
+using MobileAuslesen.Models;
 using MobileAuslesen.UI.UserControls;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,12 @@ namespace MobileAuslesen.UI
             var ucgd = new ucGrundDaten(this.Anzeige);
 
             pnlGrundDaten.Controls.Add(ucgd);
-            this.pnlGrundDaten.Size = ucgd.Size;
+            ucgd.Dock = DockStyle.Left;
+
+            this.pnlGrundDaten.Size = new Size(this.pnlGrundDaten.Size.Width, ucgd.Size.Height);
         }
 
-        private void btnOeffnen_Click(object sender, EventArgs e)
+        private void btnOeffnen_Click_1(object sender, EventArgs e)
         {
             //Vorabüberprüfung
             if (string.IsNullOrEmpty(this.Anzeige.URL) == true) return;
@@ -47,5 +50,11 @@ namespace MobileAuslesen.UI
             Process.Start(this.Anzeige.URL);
         }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            EventPool.TriggerDeleteAnzeige(this.Anzeige);
+
+            this.Close();
+        }
     }
 }

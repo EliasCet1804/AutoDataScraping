@@ -70,6 +70,7 @@
     <Compile Include="Controller\StaticController\HtmlDocumentController.cs" />
     <Compile Include="Controller\StaticController\StorageController.cs" />
     <Compile Include="Core\EnumDefinition.cs" />
+    <Compile Include="Events\EventPool.cs" />
     <Compile Include="Events\WebSocketEventPool.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>

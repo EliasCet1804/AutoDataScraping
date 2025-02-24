@@ -1,9 +1,11 @@
-﻿using MobileAuslesen.Models;
+﻿using MobileAuslesen.Controller.StaticController;
+using MobileAuslesen.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -17,15 +19,17 @@ namespace MobileAuslesen.UI.UserControls
         internal ucGrundDaten(Anzeige anzeige)
         {
             InitializeComponent();
-
+            //anzeige.Auto.Kilometerstand.ToString() + " km"
             this.txtTitel.AddInfos("Titel", anzeige.Titel, true);
             this.txtKurzBeschreibung.AddInfos("Kurzbeschreibung", anzeige.Kurzbeschreibung, true);
-            this.txtPreis.AddInfos("Preis", anzeige.Preis.ToString() + "€", true);
+            this.txtPreis.AddInfos("Preis", ConvertController.IntegerWithDotsAndSuffix(anzeige.Preis, "€"), true);
+            this.txtKilometer.AddInfos("Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(anzeige.Auto.Kilometerstand, "km"), true);
+            this.txtErstzulassung.AddInfos("Erstzulassung", ConvertController.ConvertDateTimeInFormat(anzeige.Auto.Erstzulassung), true);
 
-            changeSplitPos(null, null);
+            changeSplitPos();
         }
 
-        private void changeSplitPos(object sender, EventArgs e)
+        private void changeSplitPos()
         {
 
             int maxSplitPos = -1;
@@ -43,5 +47,9 @@ namespace MobileAuslesen.UI.UserControls
             }
         }
 
+        private void ucGrundDaten_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -68,5 +69,22 @@ namespace MobileAuslesen.Controller.StaticController
             return value;
         }
 
+        internal static string IntegerWithDotsAndSuffix(int zahl, string suffix = "")
+        {
+            //setzte ggf. suffix ins richtige format
+            if (string.IsNullOrEmpty(suffix) == false) suffix = " " + suffix.Trim();
+
+            //Formatiere die Zahl mit . bei tausender
+            string formattierteZahl = zahl.ToString("N0", CultureInfo.GetCultureInfo("de-DE"));
+
+            //gebe formatierteZahl und suffix zurück
+            return formattierteZahl + suffix;
+
+        }
+
+        internal static string ConvertDateTimeInFormat(DateTime date)
+        {
+            return date.ToString("MM/yyyy", CultureInfo.InvariantCulture);
+        }
     }
 }
