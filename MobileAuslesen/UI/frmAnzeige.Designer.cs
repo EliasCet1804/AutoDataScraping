@@ -67,6 +67,7 @@
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Löschen";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnOeffnen
             // 
@@ -94,7 +95,7 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1085, 407);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // frmAnzegei2
+            // frmAnzeige
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,7 +103,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pnlBar);
             this.MinimumSize = new System.Drawing.Size(1101, 489);
-            this.Name = "frmAnzegei2";
+            this.Name = "frmAnzeige";
             this.Text = "frmAnzegei2";
             this.pnlBar.ResumeLayout(false);
             this.ResumeLayout(false);

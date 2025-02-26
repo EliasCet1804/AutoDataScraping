@@ -65,10 +65,15 @@ namespace MobileAuslesen.UI.UserControls
             this.ReadOnly = isReadOnly;
         }
 
-        internal void setSplitPos(int splitPos)
+        internal void SetSplitPos(int splitPos)
         {
             this.SplitPos = splitPos;
             panel1.Size = new Size(splitPos, panel1.Size.Height);
+        }
+
+        internal string GetSelectedText()
+        {
+            return txtInfo.SelectedText;
         }
     }
 }

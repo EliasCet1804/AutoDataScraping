@@ -24,7 +24,6 @@ namespace MobileAuslesen.UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-
         }
 
         private async void btnAdd_Click(object sender, EventArgs e)
@@ -36,16 +35,23 @@ namespace MobileAuslesen.UI
                 this.lblInfo.ForeColor = Color.Red;
                 return;
             }
+
             //Lese die URL ein und erstelle html doc
             WebSiteReader webSiteReader = new WebSiteReader();
             var code = await webSiteReader.GetHtmlCode(textBox1.Text);
 
-            WebSocketData ws = new WebSocketData();
-            ws.Url = textBox1.Text;
-            ws.HtmlCode = code;
+            //Erstelle neue WebSocketData aus den gesammelten Informatioenn
+            WebSocketData ws = new WebSocketData
+            {
+                Art = Core.EnumDefinition.MessageArt.AnzeigenMessage,
+                Url = textBox1.Text,
+                HtmlCode = code,
+            };
 
+            //Sende Event ab
             WebSocketEventPool.TriggerMessageReceive(ws);
 
+            //Schließe Form mit OK
             DialogResult = DialogResult.OK;
 
         }

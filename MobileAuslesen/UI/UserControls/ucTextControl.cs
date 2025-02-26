@@ -25,6 +25,8 @@ namespace MobileAuslesen.UI.UserControls
 
             //Füge ggf. überschirft hinzu
             if (string.IsNullOrEmpty(ueberschrift) == false) AddUeberschrift(ueberschrift);
+
+            this.Dock = DockStyle.Fill;
         }
 
 
@@ -40,6 +42,8 @@ namespace MobileAuslesen.UI.UserControls
 
             //Füge ggf. überschirft hinzu
             if (string.IsNullOrEmpty(ueberschrift) == false) AddUeberschrift(ueberschrift);
+
+            this.Dock = DockStyle.Fill;
         }
 
         public ucTextControl(Dictionary<string, string> values, string ueberschrift = "")
@@ -105,7 +109,7 @@ namespace MobileAuslesen.UI.UserControls
 
             foreach (var control in controls)
             {
-                control.setSplitPos(maxSplitPos);
+                control.SetSplitPos(maxSplitPos);
             }
 
         }

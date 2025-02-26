@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -98,6 +99,12 @@
     <Compile Include="UI\frmNew.Designer.cs">
       <DependentUpon>frmNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\frmSetConfigEintrag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmSetConfigEintrag.Designer.cs">
+      <DependentUpon>frmSetConfigEintrag.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserControls\ucTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmNew.resx">
       <DependentUpon>frmNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmSetConfigEintrag.resx">
+      <DependentUpon>frmSetConfigEintrag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\ucTextBox.resx">
       <DependentUpon>ucTextBox.cs</DependentUpon>

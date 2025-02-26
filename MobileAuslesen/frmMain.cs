@@ -69,15 +69,20 @@ namespace MobileAuslesen
                 //Vorabüberprüfung
                 if (e == null) return;
 
+                //Überprüfe, um welche art es sich handelt und bearbeite die Message dann
                 switch (e.Art)
                 {
                     case Core.EnumDefinition.MessageArt.None: break;
-                    case Core.EnumDefinition.MessageArt.ConfigMessage: break;
+                    case Core.EnumDefinition.MessageArt.ConfigMessage: OpenConfigEintragForm(e); break;
                     case Core.EnumDefinition.MessageArt.AnzeigenMessage: AddNewAnzeige(e); break;
                 }
             }
         }
 
+        /// <summary>
+        /// Erstelle aus WebSocketData eine Neue Anzeige und füge diese der Oberfläche hinzu
+        /// </summary>
+        /// <param name="e"></param>
         private void AddNewAnzeige(WebSocketData e)
         {
             //Erstelle aus empfangenen daten eine Anzeige und überprüfe
@@ -123,14 +128,19 @@ namespace MobileAuslesen
             //Speicher die AnzeigenListe auf der Festplatte
             StorageController.SaveAnzeigenData(AnzeigeListe);
 
-
-
         }
 
-
+        private void OpenConfigEintragForm(WebSocketData data)
+        {
+            using (frmSetConfigEintrag frm = new frmSetConfigEintrag(data))
+            {
+                frm.ShowDialog();
+            }
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            //Öffne die Form zur erstellung eines neuen Eintrages
             using (frmNew frm = new frmNew())
             {
                 frm.ShowDialog();
@@ -140,13 +150,13 @@ namespace MobileAuslesen
         private void btnRemove_Click(object sender, EventArgs e)
         {
             //Vorabüberprüfung
-            if (dataGridView1.SelectedRows.Count < 1) return;
-
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
+            //Lösche ausgewählte Anzeige
             AnzeigeListe.RemoveAt(index);
 
+            //aktualisiere Oberfl#che 
             bsAnzeigen.ResetBindings(false);
 
         }
@@ -157,6 +167,7 @@ namespace MobileAuslesen
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
+            //Öffne ausgewählte Anzeige
             using (frmAnzeige frm = new frmAnzeige(AnzeigeListe[index]))
             {
                 frm.ShowDialog();

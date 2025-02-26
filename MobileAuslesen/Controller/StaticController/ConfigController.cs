@@ -1,4 +1,5 @@
 ﻿using MobileAuslesen.Models;
+using MobileAuslesen.UI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -28,5 +29,6 @@ namespace MobileAuslesen.Controller.StaticController
             //Gebe Config zurück
             return config;
         }
+
     }
 }
