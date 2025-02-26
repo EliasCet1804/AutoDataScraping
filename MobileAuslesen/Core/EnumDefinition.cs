@@ -9,6 +9,13 @@ namespace MobileAuslesen.Core
     internal class EnumDefinition
     {
 
+        public enum MessageArt
+        {
+            None = 0,
+            ConfigMessage = 2,
+            AnzeigenMessage = 1,
+        }
+
         public enum Kraftstoffart
         {
             None = 0,

@@ -65,6 +65,7 @@
     <Compile Include="Controller\StaticController\AnbieterController.cs" />
     <Compile Include="Controller\StaticController\AnzeigenController.cs" />
     <Compile Include="Controller\StaticController\AutoController.cs" />
+    <Compile Include="Controller\StaticController\ConfigController.cs" />
     <Compile Include="Controller\StaticController\ConvertController.cs" />
     <Compile Include="Controller\StaticController\ExportController.cs" />
     <Compile Include="Controller\StaticController\HtmlDocumentController.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Models\Anbieter.cs" />
     <Compile Include="Models\Anzeige.cs" />
     <Compile Include="Models\Auto.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\WebSocketData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

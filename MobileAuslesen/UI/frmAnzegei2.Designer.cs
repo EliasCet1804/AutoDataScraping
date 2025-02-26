@@ -33,9 +33,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOeffnen = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.pnlBar.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBar
@@ -78,6 +76,7 @@
             this.btnOeffnen.TabIndex = 0;
             this.btnOeffnen.Text = "Öffnen";
             this.btnOeffnen.UseVisualStyleBackColor = true;
+            this.btnOeffnen.Click += new System.EventHandler(this.btnOeffnen_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -86,7 +85,6 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.listBox1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -95,15 +93,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1085, 407);
             this.tableLayoutPanel1.TabIndex = 5;
-            // 
-            // listBox1
-            // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(103, 287);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 96);
-            this.listBox1.TabIndex = 0;
             // 
             // frmAnzegei2
             // 
@@ -116,7 +105,6 @@
             this.Name = "frmAnzegei2";
             this.Text = "frmAnzegei2";
             this.pnlBar.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -128,6 +116,5 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOeffnen;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }

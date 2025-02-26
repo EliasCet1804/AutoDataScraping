@@ -59,7 +59,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle Teschnische Daten Nodes aus
-            var nodes = doc.DocumentNode.SelectNodes("//dl[@class='XCaEv']/dt");
+            var nodes = doc.DocumentNode.SelectNodes("//dl[@class='m4qzs']/dt");
 
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (var node in nodes)
@@ -69,8 +69,6 @@ namespace MobileAuslesen.Controller.StaticController
                 string y = ddNode.InnerText.Trim();
 
                 keyValuePairs.Add(x, y);
-
-                Console.WriteLine($"Name: {x} | Wert: {y}");
             }
 
             return keyValuePairs;

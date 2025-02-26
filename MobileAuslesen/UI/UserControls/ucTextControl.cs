@@ -10,11 +10,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.TextFormatting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MobileAuslesen.UI.UserControls
 {
     public partial class ucTextControl : UserControl
     {
+        public ucTextControl(Control Control, string ueberschrift = "")
+        {
+            InitializeComponent();
+
+            //Füge Controls hinzu
+            this.Controls.Add(Control);
+
+            //Füge ggf. überschirft hinzu
+            if (string.IsNullOrEmpty(ueberschrift) == false) AddUeberschrift(ueberschrift);
+        }
+
+
         public ucTextControl(List<ucTextBox> textBoxes, string ueberschrift = "")
         {
             InitializeComponent();

@@ -12,6 +12,7 @@ namespace MobileAuslesen.Controller.StaticController
 {
     internal class AnzeigenController
     {
+        #region Public
         public static Anzeige GetAnzeige(HtmlDocument doc)
         {
             //Erstelle neue Anzeige
@@ -38,6 +39,21 @@ namespace MobileAuslesen.Controller.StaticController
             return anzeige;
         }
 
+        public static async Task<List<Anzeige>> LoadAnzeigen()
+        {
+            //Lade AnzeigenListe und überprüfe
+            var anzeigenListe = StorageController.GetAnzeigeListeFromDrive();
+            if (anzeigenListe == null) return null;
+
+            //Filter nicht aktuelle anzeigen raus
+            anzeigenListe = await CheckVerfuegbar(anzeigenListe);
+
+            return anzeigenListe;
+
+        }
+        #endregion
+
+        #region Private
         private static string GetAnzeigenTitel(HtmlDocument doc)
         {
             //Vorabüberprüfung
@@ -52,6 +68,7 @@ namespace MobileAuslesen.Controller.StaticController
 
             return titel;
         }
+
         private static string GetAnzeigenKurzbeschreibung(HtmlDocument doc)
         {
             //Vorabüberprüfung
@@ -73,11 +90,13 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode("//div[@data-testid='vip-vehicle-description-text']");
+            var node = doc.DocumentNode.SelectSingleNode("//article[@class='A3G6X lAeeF vTKPY']//div[@data-testid='vip-vehicle-description-content']");
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
-            string beschreibung = WebUtility.HtmlDecode(node.InnerText);
+            string beschreibung = WebUtility.HtmlDecode(node.InnerHtml);
+
+            beschreibung = "<h3>Fahrzeugbeschreibung laut Anbieter</h3><hr>" + beschreibung;
 
             return beschreibung;
         }
@@ -94,7 +113,7 @@ namespace MobileAuslesen.Controller.StaticController
             return preis;
         }
 
-        public static async Task<List<Anzeige>> CheckVerfuegbar(List<Anzeige> anzeigenListe)
+        private static async Task<List<Anzeige>> CheckVerfuegbar(List<Anzeige> anzeigenListe)
         {
             //Vorabüberprüfung
             if (anzeigenListe == null) return null;
@@ -122,6 +141,9 @@ namespace MobileAuslesen.Controller.StaticController
             //Gebe result zurück
             return result;
         }
+        #endregion
+
+
 
 
     }

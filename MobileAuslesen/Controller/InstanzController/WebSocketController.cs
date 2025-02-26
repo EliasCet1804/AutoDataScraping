@@ -31,8 +31,6 @@ namespace MobileAuslesen.Controller.InstanzController
                 socket.OnMessage = message =>
                 {
                     var data = JsonConvert.DeserializeObject<WebSocketData>(message);
-                    Console.WriteLine($"🌍 URL erhalten: {data.Url}");
-                    Console.WriteLine($"📄 HTML-Inhalt erhalten ({data.HtmlCode.Length} Zeichen)");
 
                     if (isErlaubteURL(data.Url) == false) return;
 
@@ -41,9 +39,6 @@ namespace MobileAuslesen.Controller.InstanzController
                     WebSocketEventPool.TriggerMessageReceive(data);
                 };
             });
-
-            Console.WriteLine("WebSocket-Server läuft auf ws://127.0.0.1:8080");
-            Console.ReadLine();
         }
 
         private bool isErlaubteURL(string url)

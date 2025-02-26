@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MobileAuslesen.Core;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace MobileAuslesen.Models
 {
     internal class WebSocketData
     {
+        [JsonProperty("Art")]
+        public EnumDefinition.MessageArt Art { get; set; }
 
         [JsonProperty("Url")]
         public string Url { get; set; }

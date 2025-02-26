@@ -54,7 +54,6 @@ namespace MobileAuslesen.UI.UserControls
             int splitPos = lblInfo.Location.X + lblInfo.Size.Width;
             this.SplitPos = splitPos;
 
-            Console.WriteLine(splitPos.ToString());
             panel1.Size = new Size(splitPos, panel1.Size.Height);
         }
 

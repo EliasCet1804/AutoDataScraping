@@ -39,20 +39,23 @@ namespace MobileAuslesen
             //Starte WebSockerServer
             this.WebsocketController.Start();
 
-            //Lade AnzeigenListe und überprüfe
-            var anzeigenListe = StorageController.GetAnzeigeListeFromDrive();
-            if (anzeigenListe != null) this.AnzeigeListe = anzeigenListe;
-
-            //Filter nicht aktuelle anzeigen raus
-            anzeigenListe = await AnzeigenController.CheckVerfuegbar(anzeigenListe);
+            //Lade gespeicherte Anzeigen
+            var list = await AnzeigenController.LoadAnzeigen();
+            if (list != null) this.AnzeigeListe = list;
 
             //füge AnzeigenListe der BindingSource hinzu
-            bsAnzeigen.DataSource = AnzeigeListe;
+            bsAnzeigen.DataSource = this.AnzeigeListe;
 
             //verdrahte die CustomEvents
+            VerdahteCustomEvents();
+        }
+
+        private void VerdahteCustomEvents()
+        {
             WebSocketEventPool.MessageReceive += OnMessageReceive;
             EventPool.DeleteAnzeige += OnDeleteAnzeige;
         }
+
         #endregion
 
         #region Custom Events
@@ -66,19 +69,27 @@ namespace MobileAuslesen
                 //Vorabüberprüfung
                 if (e == null) return;
 
-                //Erstelle aus empfangenen daten eine Anzeige und überprüfe
-                var anzeige = HtmlDocumentController.CreateAnzeige(e);
-                if (anzeige == null) return;
-
-                //Füge erstellte anzeige, der liste hinzu
-                AnzeigeListe.Add(anzeige);
-
-                //Update die Oberfläche
-                this.Validate();
-                bsAnzeigen.ResetBindings(false);
-
+                switch (e.Art)
+                {
+                    case Core.EnumDefinition.MessageArt.None: break;
+                    case Core.EnumDefinition.MessageArt.ConfigMessage: break;
+                    case Core.EnumDefinition.MessageArt.AnzeigenMessage: AddNewAnzeige(e); break;
+                }
             }
+        }
 
+        private void AddNewAnzeige(WebSocketData e)
+        {
+            //Erstelle aus empfangenen daten eine Anzeige und überprüfe
+            var anzeige = HtmlDocumentController.CreateAnzeige(e);
+            if (anzeige == null) return;
+
+            //Füge erstellte anzeige, der liste hinzu
+            AnzeigeListe.Add(anzeige);
+
+            //Update die Oberfläche
+            this.Validate();
+            bsAnzeigen.ResetBindings(false);
         }
 
         private void OnDeleteAnzeige(object sender, Anzeige e)
@@ -112,6 +123,8 @@ namespace MobileAuslesen
             //Speicher die AnzeigenListe auf der Festplatte
             StorageController.SaveAnzeigenData(AnzeigeListe);
 
+
+
         }
 
 
@@ -141,16 +154,10 @@ namespace MobileAuslesen
         private void btnShow_Click(object sender, EventArgs e)
         {
             //Vorabüberprüfung
-            if (dataGridView1.SelectedRows.Count < 1) return;
-
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
-            Anzeige anzeige = AnzeigeListe[index];
-
-            //Process.Start(anzeige.URL);
-
-            using (frmAnzegei2 frm = new frmAnzegei2(anzeige))
+            using (frmAnzegei2 frm = new frmAnzegei2(AnzeigeListe[index]))
             {
                 frm.ShowDialog();
             }

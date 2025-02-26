@@ -69,8 +69,6 @@ namespace AutoDataScraping.Controller.StaticController
                 string y = ddNode.InnerText.Trim();
 
                 keyValuePairs.Add(x, y);
-
-                Console.WriteLine($"Name: {x} | Wert: {y}");
             }
 
             return keyValuePairs;
