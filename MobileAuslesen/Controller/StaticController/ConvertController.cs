@@ -84,6 +84,10 @@ namespace MobileAuslesen.Controller.StaticController
 
         internal static string ConvertDateTimeInFormat(DateTime date)
         {
+            if (date == null) return string.Empty;
+
+            if (date == DateTime.MinValue) return "Neu";
+
             return date.ToString("MM/yyyy", CultureInfo.InvariantCulture);
         }
     }

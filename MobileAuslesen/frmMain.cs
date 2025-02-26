@@ -150,7 +150,7 @@ namespace MobileAuslesen
 
             //Process.Start(anzeige.URL);
 
-            using (frmAnzeige frm = new frmAnzeige(anzeige))
+            using (frmAnzegei2 frm = new frmAnzegei2(anzeige))
             {
                 frm.ShowDialog();
             }

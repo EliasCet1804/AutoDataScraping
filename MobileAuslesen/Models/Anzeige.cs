@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fleck;
+using MobileAuslesen.Controller.StaticController;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +52,51 @@ namespace MobileAuslesen.Models
         #endregion
 
         #region Methoden 
+
+        public Dictionary<string, string> GetAnbieterInformationen()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { "Ist Händler", this.Anbieter.IsHaendler ? "Ja" : "Nein" },
+                { "Name", this.Anbieter.Name },
+                { "Ort", this.Anbieter.Ort },
+                { "Tel. Nummer", this.Anbieter.TelNummer },
+                { "Bewertung", this.Anbieter.Bewertung.ToString() },
+                { "Angemeldet seit", this.Anbieter.AngemeldetSeit.ToString() },
+            };
+
+            return dict;
+        }
+
+        public Dictionary<string, string> GetSonstigeInformationen()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { "Leistung", ConvertController.IntegerWithDotsAndSuffix(this.Auto.Leistung, "PS") },
+                { "Getriebeart", this.Auto.Getriebeart.ToString() },
+                { "Fahrzeughalter", this.Auto.Fahrzeughalter.ToString() },
+                { "HU", ConvertController.ConvertDateTimeInFormat(this.Auto.HU) },
+                { "Kategorie", this.Auto.Fahrzeugart.ToString() },
+                { "Farbe", this.Auto.Farbe },
+            };
+
+            return dict;
+        }
+
+        public Dictionary<string, string> GetGrundLagenInformationen()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { "Titel", this.Titel },
+                { "Kurzbeschreibung", this.Kurzbeschreibung },
+                { "Preis", ConvertController.IntegerWithDotsAndSuffix(this.Preis, "€") },
+                { "Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Auto.Kilometerstand, "km") },
+                { "Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Auto.Erstzulassung) },
+                { "Kraftstoffart", this.Auto.Kraftstoffart.ToString() }
+            };
+
+            return dict;
+        }
 
         public void AddAutoInformation(Dictionary<string, string> infos)
         {

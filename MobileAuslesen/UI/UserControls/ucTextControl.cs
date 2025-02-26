@@ -45,6 +45,7 @@ namespace MobileAuslesen.UI.UserControls
             //Füge ggf. überschirft hinzu
             if (string.IsNullOrEmpty(ueberschrift) == false) AddUeberschrift(ueberschrift);
 
+            this.Dock = DockStyle.Fill;
         }
 
         private void AddUeberschrift(string ueberschrift)

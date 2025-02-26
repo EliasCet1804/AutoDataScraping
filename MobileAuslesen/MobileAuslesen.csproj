@@ -126,6 +126,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\frmAnzegei2.resx">
+      <DependentUpon>frmAnzegei2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmAnzeige.resx">
       <DependentUpon>frmAnzeige.cs</DependentUpon>
     </EmbeddedResource>
