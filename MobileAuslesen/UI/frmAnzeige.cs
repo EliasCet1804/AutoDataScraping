@@ -15,18 +15,15 @@ using System.Windows.Forms;
 
 namespace MobileAuslesen.UI
 {
-
     public partial class frmAnzeige : Form
     {
-
-        private Anzeige Anzeige;
+        private Anzeige Anzeige = null;
 
         internal frmAnzeige(Anzeige anzeige)
         {
             InitializeComponent();
 
             this.Anzeige = anzeige;
-            this.Text = "Ansicht: " + anzeige.Titel + " | " + anzeige.Kurzbeschreibung;
 
             Application.Idle += OnLoaded;
         }
@@ -35,43 +32,62 @@ namespace MobileAuslesen.UI
         {
             Application.Idle -= OnLoaded;
 
-            pnlInformationen.Controls.Add(CreateGrundLagenControl());
-            pnlInformationen.Controls.Add(CreateSonstigeInformationen());
+            List<ucTextControl> ucTextControls = new List<ucTextControl>
+            {
+                new ucTextControl(this.Anzeige.GetGrundLagenInformationen(), "Grundlagen"),
+                new ucTextControl(this.Anzeige.GetSonstigeInformationen(), "Sonstige Informationen"),
+                new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"),
+                new ucTextControl(GetAusstatungsListBox(), "Ausstattung"),
+                new ucTextControl(GetBeschreibungsLabel(), "Beschreibung")
+            };
 
+            int x = 0;
+            int y = 0;
+            foreach (ucTextControl uc in ucTextControls)
+            {
+                if (x == 3)
+                {
+                    x = 0; y = 1;
+                }
+                uc.Dock = DockStyle.Fill;
+
+                tableLayoutPanel1.Controls.Add(uc, x, y);
+
+                if (x == 1 && y == 1) tableLayoutPanel1.SetColumnSpan(uc, 2);
+
+                x++;
+
+
+            }
         }
 
-        private ucTextControl CreateSonstigeInformationen()
+        private Control GetBeschreibungsLabel()
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict.Add("Leistung", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Leistung, "PS"));
-            dict.Add("Kurzbeschreibung", this.Anzeige.Kurzbeschreibung);
-            dict.Add("Preis", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Preis, "€"));
-            dict.Add("Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Kilometerstand, "km"));
-            dict.Add("Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Anzeige.Auto.Erstzulassung));
-
-            ucTextControl uc = new ucTextControl(dict, "Sonstige Informationen");
-            uc.Dock = DockStyle.Left;
-
-            return uc;
+            WebBrowser label = new WebBrowser();
+            label.DocumentText = this.Anzeige.Beschreibung;
+            label.Dock = DockStyle.Fill;
+            return label;
         }
 
-        private ucTextControl CreateGrundLagenControl()
+        private Control GetAusstatungsListBox()
         {
-            Dictionary<string, string> dict = new Dictionary<string, string>();
-            dict.Add("Titel", this.Anzeige.Titel);
-            dict.Add("Kurzbeschreibung", this.Anzeige.Kurzbeschreibung);
-            dict.Add("Preis", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Preis, "€"));
-            dict.Add("Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Anzeige.Auto.Kilometerstand, "km"));
-            dict.Add("Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Anzeige.Auto.Erstzulassung));
+            ListBox listBox = new ListBox();
+            listBox.Dock = DockStyle.Fill;
 
-            ucTextControl uc = new ucTextControl(dict, "Grundlagen");
-            uc.Dock = DockStyle.Left;
+            foreach (string ausstattung in this.Anzeige.Auto.Ausstattung)
+            {
+                listBox.Items.Add(ausstattung);
+                listBox.Items.Add("------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            }
 
-            return uc;
-
+            return listBox;
         }
 
-        private void btnOeffnen_Click_1(object sender, EventArgs e)
+        private void btnAddToExport_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnOeffnen_Click(object sender, EventArgs e)
         {
             //Vorabüberprüfung
             if (string.IsNullOrEmpty(this.Anzeige.URL) == true) return;

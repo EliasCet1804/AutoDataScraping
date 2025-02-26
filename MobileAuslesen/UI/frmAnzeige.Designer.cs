@@ -32,11 +32,8 @@
             this.btnAddToExport = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOeffnen = new System.Windows.Forms.Button();
-            this.pnlMain = new System.Windows.Forms.Panel();
-            this.pnlInformationen = new System.Windows.Forms.Panel();
-            this.pnlBeschreibung = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlBar.SuspendLayout();
-            this.pnlMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBar
@@ -49,8 +46,8 @@
             this.pnlBar.MaximumSize = new System.Drawing.Size(0, 43);
             this.pnlBar.MinimumSize = new System.Drawing.Size(0, 43);
             this.pnlBar.Name = "pnlBar";
-            this.pnlBar.Size = new System.Drawing.Size(800, 43);
-            this.pnlBar.TabIndex = 3;
+            this.pnlBar.Size = new System.Drawing.Size(1085, 43);
+            this.pnlBar.TabIndex = 4;
             // 
             // btnAddToExport
             // 
@@ -60,6 +57,7 @@
             this.btnAddToExport.TabIndex = 2;
             this.btnAddToExport.Text = "Zum Export hinzufügen";
             this.btnAddToExport.UseVisualStyleBackColor = true;
+            this.btnAddToExport.Click += new System.EventHandler(this.btnAddToExport_Click);
             // 
             // btnDelete
             // 
@@ -69,7 +67,6 @@
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Löschen";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnOeffnen
             // 
@@ -79,57 +76,45 @@
             this.btnOeffnen.TabIndex = 0;
             this.btnOeffnen.Text = "Öffnen";
             this.btnOeffnen.UseVisualStyleBackColor = true;
-            this.btnOeffnen.Click += new System.EventHandler(this.btnOeffnen_Click_1);
+            this.btnOeffnen.Click += new System.EventHandler(this.btnOeffnen_Click);
             // 
-            // pnlMain
+            // tableLayoutPanel1
             // 
-            this.pnlMain.Controls.Add(this.pnlBeschreibung);
-            this.pnlMain.Controls.Add(this.pnlInformationen);
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 43);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(800, 407);
-            this.pnlMain.TabIndex = 4;
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1085, 407);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // pnlInformationen
-            // 
-            this.pnlInformationen.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlInformationen.Location = new System.Drawing.Point(0, 0);
-            this.pnlInformationen.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
-            this.pnlInformationen.Name = "pnlInformationen";
-            this.pnlInformationen.Size = new System.Drawing.Size(341, 407);
-            this.pnlInformationen.TabIndex = 3;
-            // 
-            // pnlBeschreibung
-            // 
-            this.pnlBeschreibung.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlBeschreibung.Location = new System.Drawing.Point(420, 0);
-            this.pnlBeschreibung.Name = "pnlBeschreibung";
-            this.pnlBeschreibung.Size = new System.Drawing.Size(380, 407);
-            this.pnlBeschreibung.TabIndex = 4;
-            // 
-            // frmAnzeige
+            // frmAnzegei2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlMain);
+            this.ClientSize = new System.Drawing.Size(1085, 450);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pnlBar);
-            this.Name = "frmAnzeige";
-            this.Text = "frmAnzeige";
+            this.MinimumSize = new System.Drawing.Size(1101, 489);
+            this.Name = "frmAnzegei2";
+            this.Text = "frmAnzegei2";
             this.pnlBar.ResumeLayout(false);
-            this.pnlMain.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
         private System.Windows.Forms.Panel pnlBar;
         private System.Windows.Forms.Button btnAddToExport;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnOeffnen;
-        private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.Panel pnlInformationen;
-        private System.Windows.Forms.Panel pnlBeschreibung;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

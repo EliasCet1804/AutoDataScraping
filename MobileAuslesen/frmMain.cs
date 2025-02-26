@@ -157,7 +157,7 @@ namespace MobileAuslesen
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
-            using (frmAnzegei2 frm = new frmAnzegei2(AnzeigeListe[index]))
+            using (frmAnzeige frm = new frmAnzeige(AnzeigeListe[index]))
             {
                 frm.ShowDialog();
             }
