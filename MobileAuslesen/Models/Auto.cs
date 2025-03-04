@@ -22,10 +22,10 @@ namespace MobileAuslesen.Models
         public int Leistung { get; set; }
 
         [JsonProperty("Kraftstoffart")]
-        public EnumDefinition.Kraftstoffart Kraftstoffart { get; set; }
+        public string Kraftstoffart { get; set; }
 
         [JsonProperty("Getriebe")]
-        public EnumDefinition.GetriebeArt Getriebeart { get; set; }
+        public string Getriebeart { get; set; }
 
         [JsonProperty("Erstzulassung")]
         public DateTime Erstzulassung { get; set; }
@@ -39,7 +39,7 @@ namespace MobileAuslesen.Models
         public string Fahrzeugzustand { get; set; }
 
         [JsonProperty("Kategorie")]
-        public EnumDefinition.Fahrzeugart Fahrzeugart { get; set; }
+        public string Fahrzeugart { get; set; }
 
         [JsonProperty("Fahrzeugnummer")]
         public string Fahrzeugnummer { get; set; }
@@ -60,20 +60,7 @@ namespace MobileAuslesen.Models
         public string AnzahlTuer { get; set; }
 
         [JsonProperty("Schadstoffklasse")]
-        public EnumDefinition.Schadstoffklassen Schadstoffklasse { get; set; }
-
-        [JsonProperty("Umweltplakette")]
-        public string UmweltPlakette
-        {
-            get
-            {
-                if ((int)Schadstoffklasse == 0) return "nicht Angegeben";
-                else if ((int)Schadstoffklasse <= 2) return "Rote Plakette";
-                else if ((int)Schadstoffklasse == 3) return "Gelbe Plakette";
-                else if ((int)Schadstoffklasse >= 4) return "Grüne Plakette";
-                else return "nicht Angegeben";
-            }
-        }
+        public string Schadstoffklasse { get; set; }
 
         [JsonProperty("HU")]
         public DateTime HU { get; set; }

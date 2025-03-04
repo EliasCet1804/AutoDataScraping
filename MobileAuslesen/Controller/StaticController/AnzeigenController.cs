@@ -60,7 +60,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode("//h2[@class='dNpqi']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeTitelNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -75,7 +75,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode("//div[@class='GOIOV fqe3L EevEz']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeKurzBeschreibungNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -90,7 +90,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode("//article[@class='A3G6X lAeeF vTKPY']//div[@data-testid='vip-vehicle-description-content']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeBeschreibungNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -105,7 +105,7 @@ namespace MobileAuslesen.Controller.StaticController
         {
             if (doc == null) return -1;
 
-            var node = doc.DocumentNode.SelectSingleNode("//div[@data-testid='vip-price-label']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigePreisNode);
             if (string.IsNullOrEmpty(node.InnerText) == true) return -1;
 
             int preis = (int)ConvertController.ConvertInTypeFormat(typeof(int), node.InnerText);

@@ -19,22 +19,6 @@ namespace MobileAuslesen.Controller.StaticController
             // Entferne Tausenderpunkte und Einheiten wie "km"
             value = RemoveUnits(value);
 
-            // Wenn der Zieltyp ein Enum ist, konvertiere ihn
-            if (targetType.IsEnum)
-            {
-                Match match = Regex.Match(value, @"\d+");
-                if (match.Success) value = match.Value;
-
-                value = value.Replace(" ", "");
-
-                if (value.Contains("/")) value = value.Split('/')[0];
-
-                if (value == "Schalter") value = "Schaltgetriebe";
-
-                var enumValue = Enum.Parse(targetType, value, true);
-                return enumValue;
-            }
-
             //Parse in den jeweiligen typ
             if (targetType == typeof(string)) return value;
             else if (targetType == typeof(int)) return int.TryParse(value, out var intValue) ? intValue : 0;

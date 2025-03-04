@@ -65,6 +65,7 @@ namespace MobileAuslesen.UI.UserControls
             this.Dock = DockStyle.Fill;
         }
 
+
         private void AddUeberschrift(string ueberschrift)
         {
             Label lbl = new Label();
@@ -121,9 +122,21 @@ namespace MobileAuslesen.UI.UserControls
             {
                 this.Controls.Add(box);
                 box.Location = new Point(4, lastPos);
-
                 lastPos = box.Location.Y + box.Size.Height + 6;
+                box.Anchor = box.Anchor | AnchorStyles.Right;
             }
+
+
+        }
+
+        public ucTextBox GetTaggedTextBox(string tag)
+        {
+            foreach (var box in this.Controls.OfType<ucTextBox>())
+            {
+                if (box.Tag.ToString() == tag) return box;
+            }
+
+            return null;
         }
     }
 }

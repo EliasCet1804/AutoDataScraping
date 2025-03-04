@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using MobileAuslesen.Controller.InstanzController;
 
 namespace MobileAuslesen.Controller.StaticController
 {
@@ -57,7 +59,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle Name-Node und überprüfe
-            HtmlNode node = doc.DocumentNode.SelectSingleNode("//h4[@class='QTTRi mIdDf']");
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterNameNode);
             if (node == null) return null;
 
             //Name zurückgeben
@@ -69,7 +71,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wöhle Ort-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode("//span[@class='olCKS']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterOrtNode);
             if (node == null) return null;
 
             //Ort zurückgeben
@@ -81,7 +83,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wöhle TelNr-Node und füge ggf. anbieter hinzu
-            var node = doc.DocumentNode.SelectSingleNode("//div[@class='QbZvr']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterTelNrNode);
             if (node == null) return null;
 
             node = node.FirstChild.SelectSingleNode("span");
@@ -96,7 +98,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle AngemeldetSeit-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode("//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.With_Mde_Since_value']/div");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterAngemeldetSeitNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -112,7 +114,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle InserateOnline-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode("//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.X_Ads_Online_value']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterInserateOnlineNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -128,7 +130,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle Weiterempfehlungsrate-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode("//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.Referrals_value']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterWeiterEmpfehlungsRateNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -144,7 +146,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle KfzWieBeschrieben-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode("//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.Vehicle_As_Described_value']");
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterKfzWieBeschriebenNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext

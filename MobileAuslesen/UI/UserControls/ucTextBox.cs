@@ -49,6 +49,15 @@ namespace MobileAuslesen.UI.UserControls
             InitializeComponent();
         }
 
+        public ucTextBox(string titel, string textBoxText, bool isReadOnly, string tag = "")
+        {
+            InitializeComponent();
+
+            AddInfos(titel, textBoxText, isReadOnly, tag);
+
+        }
+
+
         private void lblInfo_SizeChanged(object sender, EventArgs e)
         {
             int splitPos = lblInfo.Location.X + lblInfo.Size.Width;
@@ -58,11 +67,12 @@ namespace MobileAuslesen.UI.UserControls
         }
 
 
-        public void AddInfos(string titel, string textBoxText, bool isReadOnly)
+        public void AddInfos(string titel, string textBoxText, bool isReadOnly, string tag = "")
         {
             this.Titel = titel;
             this.TextBoxText = textBoxText;
             this.ReadOnly = isReadOnly;
+            this.Tag = tag;
         }
 
         internal void SetSplitPos(int splitPos)

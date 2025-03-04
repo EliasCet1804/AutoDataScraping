@@ -1,5 +1,4 @@
 ﻿using MobileAuslesen.Models;
-using MobileAuslesen.UI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MobileAuslesen.Controller.StaticController
+namespace MobileAuslesen.Controller.InstanzController
 {
     internal class ConfigController
     {
-        public static Config GetConfig()
+        private Config config { get; set; }
+        public Config Config
+        {
+            get
+            {
+                if (config == null)
+                {
+                    this.config = GetConfig();
+                }
+
+                return this.config;
+            }
+            set
+            {
+                this.config = value;
+            }
+        }
+
+        #region Singleton
+
+        private static ConfigController _Instance = null;
+        public static ConfigController Instance
+        {
+            get
+            {
+                if (_Instance == null)
+                {
+                    _Instance = new ConfigController();
+                }
+                return _Instance;
+            }
+        }
+
+        #endregion
+
+        private Config GetConfig()
         {
             //Erstelle configPath
             string configPath = Path.Combine(Directory.GetParent(Application.StartupPath).Parent.FullName, "config.json");
@@ -29,6 +63,7 @@ namespace MobileAuslesen.Controller.StaticController
             //Gebe Config zurück
             return config;
         }
+
 
     }
 }
