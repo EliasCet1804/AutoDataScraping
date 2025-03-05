@@ -45,8 +45,8 @@ namespace MobileAuslesen.Controller.StaticController
             var anzeigenListe = StorageController.GetAnzeigeListeFromDrive();
             if (anzeigenListe == null) return null;
 
-            //Filter nicht aktuelle anzeigen raus
-            anzeigenListe = await CheckVerfuegbar(anzeigenListe);
+            //Filter nicht aktuelle anzeigen raus, falls die config das sagt
+            if (ConfigController.Instance.Config.CheckAnzeigeAtStart == true) anzeigenListe = await CheckVerfuegbar(anzeigenListe);
 
             return anzeigenListe;
 
@@ -60,7 +60,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeTitelNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnzeigeTitelNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -75,7 +75,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeKurzBeschreibungNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnzeigeKurzBeschreibungNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -90,7 +90,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle die Beschreibung
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigeBeschreibungNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnzeigeBeschreibungNode);
             if (node == null) return null;
 
             //Dekodiert ggf. Sonderzeichen und umlaute
@@ -105,10 +105,12 @@ namespace MobileAuslesen.Controller.StaticController
         {
             if (doc == null) return -1;
 
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnzeigePreisNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnzeigePreisNode);
             if (string.IsNullOrEmpty(node.InnerText) == true) return -1;
 
-            int preis = (int)ConvertController.ConvertInTypeFormat(typeof(int), node.InnerText);
+            var preisSplit = node.InnerText.Split('€');
+
+            int preis = (int)ConvertController.ConvertInTypeFormat(typeof(int), preisSplit[preisSplit.Length - 2]);
 
             return preis;
         }

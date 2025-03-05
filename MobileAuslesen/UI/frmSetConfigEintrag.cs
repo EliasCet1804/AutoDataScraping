@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using MobileAuslesen.Controller.InstanzController;
 using MobileAuslesen.Models;
 using MobileAuslesen.UI.UserControls;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,6 +39,12 @@ namespace MobileAuslesen.UI
             //Erstelle TextControl aus den Boxen und füge dem pnlTexte hinzu
             pnlTexte.Controls.Add(new ucTextControl(new List<ucTextBox> { new ucTextBox("Empfangene Nachricht:", _data.HtmlCode, true, "main"), new ucTextBox("Ausgewählte Nachricht:", "", true, "select") }));
 
+            foreach (PropertyInfo property in ConfigController.Instance.Config.HtmlConfig.GetType().GetProperties())
+            {
+                string name = property.Name;
+
+                checkedListBox1.Items.Add(name);
+            }
         }
 
 
@@ -66,6 +74,19 @@ namespace MobileAuslesen.UI
             //setze den text der select textbox auf den selectedText der main textbox
             txtControl.GetTaggedTextBox("select").TextBoxText = selectedText;
             this._selectedText = selectedText;
+        }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            //Vorabüberprüfung
+            if (e.NewValue != CheckState.Checked) return;
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (i == e.Index) continue;
+
+                checkedListBox1.SetItemChecked(i, false);
+            }
         }
     }
 }

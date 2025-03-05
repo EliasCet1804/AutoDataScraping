@@ -91,6 +91,7 @@
     <Compile Include="Models\Anzeige.cs" />
     <Compile Include="Models\Auto.cs" />
     <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\HtmlConfig.cs" />
     <Compile Include="Models\WebSocketData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

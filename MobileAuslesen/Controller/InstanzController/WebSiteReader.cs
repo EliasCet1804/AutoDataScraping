@@ -19,7 +19,7 @@ namespace MobileAuslesen.Controller.InstanzController
         #region Konstruktoren
         public WebSiteReader()
         {
-            this.HttpClient = new HttpClient();
+            this.HttpClient = new HttpClient(new HttpClientHandler { UseCookies = true });
             this.Document = new HtmlDocument();
         }
         #endregion
@@ -34,7 +34,9 @@ namespace MobileAuslesen.Controller.InstanzController
             try
             {
                 // User-Agent setzen, um wie ein Browser zu erscheinen
-                HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+                HttpClient.DefaultRequestHeaders.Accept.ParseAdd("text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+                HttpClient.DefaultRequestHeaders.AcceptLanguage.ParseAdd("de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7");
+                HttpClient.DefaultRequestHeaders.Referrer = new Uri(url);
 
                 //Lese html und gebe zurück
                 return await HttpClient.GetStringAsync(url);

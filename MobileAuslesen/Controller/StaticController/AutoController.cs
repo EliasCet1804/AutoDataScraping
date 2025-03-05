@@ -43,7 +43,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle Ausstattung Nodes aus
-            var nodes = doc.DocumentNode.SelectNodes(ConfigController.Instance.Config.AutoAusstattungNode);
+            var nodes = doc.DocumentNode.SelectNodes(ConfigController.Instance.Config.HtmlConfig.AutoAusstattungNode);
 
             List<string> ausstattungsListe = new List<string>();
             foreach (var node in nodes)
@@ -60,13 +60,13 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle Teschnische Daten Nodes aus
-            var nodes = doc.DocumentNode.SelectNodes(ConfigController.Instance.Config.AutoTechnischeDatenNode);
+            var nodes = doc.DocumentNode.SelectNodes(ConfigController.Instance.Config.HtmlConfig.AutoTechnischeDatenNode);
 
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (var node in nodes)
             {
                 string key = node.InnerText.Trim();
-                var ddNode = node.SelectSingleNode(ConfigController.Instance.Config.AutoTechnischeDatenFollowSibilingNode);
+                var ddNode = node.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AutoTechnischeDatenFollowSibilingNode);
                 string value = ddNode.InnerText.Trim();
 
                 keyValuePairs.Add(key, value);

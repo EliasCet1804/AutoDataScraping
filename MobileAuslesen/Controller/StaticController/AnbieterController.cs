@@ -59,7 +59,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wähle Name-Node und überprüfe
-            HtmlNode node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterNameNode);
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterNameNode);
             if (node == null) return null;
 
             //Name zurückgeben
@@ -71,7 +71,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wöhle Ort-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterOrtNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterOrtNode);
             if (node == null) return null;
 
             //Ort zurückgeben
@@ -83,7 +83,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return null;
 
             //Wöhle TelNr-Node und füge ggf. anbieter hinzu
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterTelNrNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterTelNrNode);
             if (node == null) return null;
 
             node = node.FirstChild.SelectSingleNode("span");
@@ -98,7 +98,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle AngemeldetSeit-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterAngemeldetSeitNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterAngemeldetSeitNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -114,7 +114,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle InserateOnline-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterInserateOnlineNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterInserateOnlineNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -130,7 +130,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle Weiterempfehlungsrate-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterWeiterEmpfehlungsRateNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterWeiterEmpfehlungsRateNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
@@ -146,7 +146,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             //Wähle KfzWieBeschrieben-Node und überprüfe
-            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.AnbieterKfzWieBeschriebenNode);
+            var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterKfzWieBeschriebenNode);
             if (node == null) return -1;
 
             //ziehe alle zahlen aus dem innertext
