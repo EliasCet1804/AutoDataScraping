@@ -119,6 +119,7 @@ namespace MobileAuslesen
 
         #endregion
 
+
         #region Events
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
