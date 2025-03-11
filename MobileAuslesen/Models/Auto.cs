@@ -1,5 +1,4 @@
 ﻿using MobileAuslesen.Controller.StaticController;
-using MobileAuslesen.Core;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

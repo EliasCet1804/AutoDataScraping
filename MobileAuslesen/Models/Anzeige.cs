@@ -62,7 +62,7 @@ namespace MobileAuslesen.Models
                 { "Ort", this.Anbieter.Ort },
                 { "Tel. Nummer", this.Anbieter.TelNummer },
                 { "Bewertung", this.Anbieter.Bewertung.ToString() },
-                { "Angemeldet seit", this.Anbieter.AngemeldetSeit.ToString() },
+                { "Angemeldet seit", ConvertController.IntegerWithDotsAndSuffix(this.Anbieter.AngemeldetSeit, "Jahre")},
             };
 
             return dict;
@@ -92,7 +92,7 @@ namespace MobileAuslesen.Models
                 { "Preis", ConvertController.IntegerWithDotsAndSuffix(this.Preis, "€") },
                 { "Kilometerstand", ConvertController.IntegerWithDotsAndSuffix(this.Auto.Kilometerstand, "km") },
                 { "Erstzulassung", ConvertController.ConvertDateTimeInFormat(this.Auto.Erstzulassung) },
-                { "Kraftstoffart", this.Auto.Kraftstoffart.ToString() }
+                { "Kraftstoffart", this.Auto.Kraftstoffart }
             };
 
             return dict;

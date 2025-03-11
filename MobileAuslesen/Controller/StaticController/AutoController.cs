@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MobileAuslesen.Controller.InstanzController;
+using System.Text.RegularExpressions;
 
 namespace MobileAuslesen.Controller.StaticController
 {
@@ -31,11 +32,34 @@ namespace MobileAuslesen.Controller.StaticController
             List<string> ausstattung = GetAusstattung(doc);
             if (ausstattung == null || ausstattung.Count < 1) return null;
 
+            GetA(doc);
+
             //Füge Ausstattung dem Auto hinzu
             auto.Ausstattung = ausstattung;
 
             return auto;
         }
+
+        private static void GetA(HtmlDocument doc)
+        {
+            // Vorabüberprüfung
+            if (doc == null) return;
+
+            var nodes = doc.DocumentNode.SelectNodes("//img[contains(@class, 'RG8An')]");
+            if (nodes == null || nodes.Count < 1) return;
+
+            foreach (var node in nodes)
+            {
+                string url = node.GetAttributeValue("src", "");
+                if (!string.IsNullOrEmpty(url))
+                {
+                //TODO: URL auslesen und die bytes in ein Image
+                    Console.WriteLine("Gefundene URL: " + url);
+                }
+            }
+        }
+
+
         //vip-features-list
         private static List<string> GetAusstattung(HtmlDocument doc)
         {

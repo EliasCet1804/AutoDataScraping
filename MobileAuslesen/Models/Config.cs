@@ -9,7 +9,7 @@ namespace MobileAuslesen.Models
     internal class Config
     {
 
-        public HtmlConfig HtmlConfig { get; set; }
+        public HtmlConfig HtmlConfig { get; set; } = new HtmlConfig();
         public bool CheckAnzeigeAtStart { get; set; } = false;
 
 

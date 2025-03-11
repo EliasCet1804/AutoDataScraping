@@ -51,11 +51,28 @@ namespace MobileAuslesen.Controller.StaticController
             //Füge KfzWieBeschrieben hinzu
             anbieter.KfzWieBeschrieben = GetAnbieterKfzWieBeschrieben(doc);
 
+            anbieter.Bewertung = GetAnbieterBewertung(doc);
+
             return anbieter;
+        }
+
+        private static float GetAnbieterBewertung(HtmlDocument doc)
+        {
+            //Vorabüberprüfung
+            if (doc == null) return -1f;
+
+            //Wähle Bewertung-Node und überprüfe
+            HtmlNode node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnbieterBewerung);
+            if (node == null) return -1f;
+
+            //Name zurückgeben
+            return float.Parse(node.InnerText);
+
         }
 
         private static string GetAnbieterName(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return null;
 
             //Wähle Name-Node und überprüfe
@@ -68,6 +85,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static string GetAnbieterOrt(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return null;
 
             //Wöhle Ort-Node und überprüfe
@@ -80,6 +98,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static string GetAnbieterTelNr(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return null;
 
             //Wöhle TelNr-Node und füge ggf. anbieter hinzu
@@ -95,6 +114,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static int GetAnbieterAngemeldetSeit(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return -1;
 
             //Wähle AngemeldetSeit-Node und überprüfe
@@ -111,6 +131,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static int GetAnbieterInserateOnline(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return -1;
 
             //Wähle InserateOnline-Node und überprüfe
@@ -127,6 +148,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static int GetAnbieterWeiterempfehlungsrate(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return -1;
 
             //Wähle Weiterempfehlungsrate-Node und überprüfe
@@ -143,6 +165,7 @@ namespace MobileAuslesen.Controller.StaticController
 
         private static int GetAnbieterKfzWieBeschrieben(HtmlDocument doc)
         {
+            //Vorabüberprüfung
             if (doc == null) return -1;
 
             //Wähle KfzWieBeschrieben-Node und überprüfe

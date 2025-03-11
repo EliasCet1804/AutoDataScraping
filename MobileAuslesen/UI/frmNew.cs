@@ -43,7 +43,6 @@ namespace MobileAuslesen.UI
             //Erstelle neue WebSocketData aus den gesammelten Informatioenn
             WebSocketData ws = new WebSocketData
             {
-                Art = Core.EnumDefinition.MessageArt.AnzeigenMessage,
                 Url = textBox1.Text,
                 HtmlCode = code,
             };

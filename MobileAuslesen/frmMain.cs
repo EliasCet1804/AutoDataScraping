@@ -64,18 +64,14 @@ namespace MobileAuslesen
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new Action(() => OnMessageReceive(sender, e)));
-            } else
+            }
+            else
             {
                 //Vorabüberprüfung
                 if (e == null) return;
 
-                //Überprüfe, um welche art es sich handelt und bearbeite die Message dann
-                switch (e.Art)
-                {
-                    case Core.EnumDefinition.MessageArt.None: break;
-                    case Core.EnumDefinition.MessageArt.ConfigMessage: OpenConfigEintragForm(e); break;
-                    case Core.EnumDefinition.MessageArt.AnzeigenMessage: AddNewAnzeige(e); break;
-                }
+                //Erstelle aus der Nachricht eine Neue Anzeige
+                AddNewAnzeige(e);
             }
         }
 
@@ -102,7 +98,8 @@ namespace MobileAuslesen
             if (this.InvokeRequired)
             {
                 this.BeginInvoke(new Action(() => OnDeleteAnzeige(sender, e)));
-            } else
+            }
+            else
             {
                 //Vorabüberprüfung
                 if (e == null) return;
@@ -151,6 +148,9 @@ namespace MobileAuslesen
         private void btnRemove_Click(object sender, EventArgs e)
         {
             //Vorabüberprüfung
+            if (dataGridView1.SelectedRows.Count < 1) return;
+
+            //Hole den Index, der ausgewählte Row
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
@@ -165,6 +165,9 @@ namespace MobileAuslesen
         private void btnShow_Click(object sender, EventArgs e)
         {
             //Vorabüberprüfung
+            if (dataGridView1.SelectedRows.Count < 1) return;
+
+            //Hole den Index, der ausgewählte Row
             var index = dataGridView1.SelectedRows[0].Index;
             if (index < 0 || index >= AnzeigeListe.Count) return;
 
