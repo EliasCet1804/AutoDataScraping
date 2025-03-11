@@ -32,7 +32,7 @@
             this.btnCancle = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlTexte = new System.Windows.Forms.Panel();
-            this.btnSelect = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSelect = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.pnlBar.SuspendLayout();
             this.pnlTexte.SuspendLayout();
@@ -118,7 +118,7 @@
         private System.Windows.Forms.Button btnCancle;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlTexte;
-        private DevExpress.XtraEditors.SimpleButton btnSelect;
+        private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
