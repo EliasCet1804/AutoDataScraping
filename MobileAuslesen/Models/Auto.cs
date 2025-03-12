@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -31,6 +32,8 @@ namespace MobileAuslesen.Models
 
         [JsonProperty("Anzahl der Fahrzeughalter")]
         public int Fahrzeughalter { get; set; }
+
+        public List<Bild> Images { get; set; }
         #endregion
 
         #region Sonstiges

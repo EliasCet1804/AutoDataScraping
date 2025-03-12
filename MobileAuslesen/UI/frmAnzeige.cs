@@ -34,41 +34,23 @@ namespace MobileAuslesen.UI
 
             tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetGrundLagenInformationen(), "Grundlagen"), 0, 0);
             tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetSonstigeInformationen(), "Sonstige Informationen"), 1, 0);
-            tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"), 2, 0);
+            //tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"), 2, 0);
+            AddPictureBoxControl(this.Anzeige.Auto.Images);
+
             tableLayoutPanel1.Controls.Add(new ucTextControl(GetAusstatungsListBox(), "Ausstattung"), 0, 1);
 
             var x = new ucTextControl(GetBeschreibungsLabel(), "Beschreibung");
             tableLayoutPanel1.Controls.Add(x, 1, 1);
             tableLayoutPanel1.SetColumnSpan(x, 2);
-            //var X = 
 
-            //List<ucTextControl> ucTextControls = new List<ucTextControl>
-            //{
-            //    new ucTextControl(this.Anzeige.GetGrundLagenInformationen(), "Grundlagen"),
-            //    new ucTextControl(this.Anzeige.GetSonstigeInformationen(), "Sonstige Informationen"),
-            //    new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"),
-            //    new ucTextControl(GetAusstatungsListBox(), "Ausstattung"),
-            //    new ucTextControl(GetBeschreibungsLabel(), "Beschreibung")
-            //};
+        }
 
-            //int x = 0;
-            //int y = 0;
-            //foreach (ucTextControl uc in ucTextControls)
-            //{
-            //    if (x == 3)
-            //    {
-            //        x = 0; y = 1;
-            //    }
-            //    uc.Dock = DockStyle.Fill;
+        private void AddPictureBoxControl(List<Bild> images)
+        {
+            ucImageBox ib = new ucImageBox();
+            ib.AddPictures(images);
 
-            //    tableLayoutPanel1.Controls.Add( uc, x, y);
-
-            //    if (x == 1 && y == 1) tableLayoutPanel1.SetColumnSpan(uc, 2);
-
-            //    x++;
-            //}
-
-
+            tableLayoutPanel1.Controls.Add(ib, 2, 0);
         }
 
         private Control GetBeschreibungsLabel()

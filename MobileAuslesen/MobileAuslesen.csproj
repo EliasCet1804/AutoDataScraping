@@ -70,6 +70,7 @@
     <Compile Include="Controller\StaticController\ConvertController.cs" />
     <Compile Include="Controller\StaticController\ExportController.cs" />
     <Compile Include="Controller\StaticController\HtmlDocumentController.cs" />
+    <Compile Include="Controller\StaticController\BildController.cs" />
     <Compile Include="Controller\StaticController\StorageController.cs" />
     <Compile Include="Events\EventPool.cs" />
     <Compile Include="Events\WebSocketEventPool.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Models\Anbieter.cs" />
     <Compile Include="Models\Anzeige.cs" />
     <Compile Include="Models\Auto.cs" />
+    <Compile Include="Models\Bild.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\HtmlConfig.cs" />
     <Compile Include="Models\WebSocketData.cs" />
@@ -104,6 +106,12 @@
     </Compile>
     <Compile Include="UI\frmSetConfigEintrag.Designer.cs">
       <DependentUpon>frmSetConfigEintrag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UserControls\ucImageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\UserControls\ucImageBox.Designer.cs">
+      <DependentUpon>ucImageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\UserControls\ucTextBox.cs">
       <SubType>UserControl</SubType>
@@ -137,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmSetConfigEintrag.resx">
       <DependentUpon>frmSetConfigEintrag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserControls\ucImageBox.resx">
+      <DependentUpon>ucImageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UserControls\ucTextBox.resx">
       <DependentUpon>ucTextBox.cs</DependentUpon>

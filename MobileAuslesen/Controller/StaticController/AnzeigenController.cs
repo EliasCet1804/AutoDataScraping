@@ -13,7 +13,7 @@ namespace MobileAuslesen.Controller.StaticController
     internal class AnzeigenController
     {
         #region Public
-        public static Anzeige GetAnzeige(HtmlDocument doc)
+        public static async Task<Anzeige> GetAnzeigeAsync(HtmlDocument doc)
         {
             //Erstelle neue Anzeige
             Anzeige anzeige = new Anzeige();
@@ -34,7 +34,7 @@ namespace MobileAuslesen.Controller.StaticController
             anzeige.Anbieter = AnbieterController.GetAnbieter(doc);
 
             //Füge Auto der Anzeige hinzu
-            anzeige.Auto = AutoController.GetAuto(doc);
+            anzeige.Auto = await AutoController.GetAutoAsync(doc);
 
             return anzeige;
         }

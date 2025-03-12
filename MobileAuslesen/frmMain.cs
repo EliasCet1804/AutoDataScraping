@@ -71,7 +71,7 @@ namespace MobileAuslesen
                 if (e == null) return;
 
                 //Erstelle aus der Nachricht eine Neue Anzeige
-                AddNewAnzeige(e);
+                AddNewAnzeigeAsync(e);
             }
         }
 
@@ -79,10 +79,10 @@ namespace MobileAuslesen
         /// Erstelle aus WebSocketData eine Neue Anzeige und füge diese der Oberfläche hinzu
         /// </summary>
         /// <param name="e"></param>
-        private void AddNewAnzeige(WebSocketData e)
+        private async void AddNewAnzeigeAsync(WebSocketData e)
         {
             //Erstelle aus empfangenen daten eine Anzeige und überprüfe
-            var anzeige = HtmlDocumentController.CreateAnzeige(e);
+            var anzeige = await HtmlDocumentController.CreateAnzeigeAsync(e);
             if (anzeige == null) return;
 
             //Füge erstellte anzeige, der liste hinzu

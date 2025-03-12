@@ -41,14 +41,14 @@ namespace MobileAuslesen.Controller.InstanzController
                 //Lese html und gebe zurück
                 return await HttpClient.GetStringAsync(url);
 
-            } catch (HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 // Ausnahmebehandlung, falls die Anfrage fehlschlägt
                 Console.WriteLine($"Fehler beim Abrufen der URL: {ex.Message}");
                 return null;
             }
         }
-
 
         internal async Task<HtmlDocument> GetHtmlDocument(string url)
         {
@@ -66,12 +66,22 @@ namespace MobileAuslesen.Controller.InstanzController
                 document.LoadHtml(html);
 
                 return document;
-            } catch (HttpRequestException ex)
+            }
+            catch (HttpRequestException ex)
             {
                 // Ausnahmebehandlung, falls die Anfrage fehlschlägt
                 Console.WriteLine($"Fehler beim Abrufen der URL: {ex.Message}");
                 return null;
             }
+        }
+
+        internal async Task<byte[]> GetImageBytes(string url)
+        {
+            //Vorabüberprüfung
+            if (string.IsNullOrEmpty(url)) return null;
+
+            //Lese die ImageBytes async aus und gebe sie zurück
+            return await this.HttpClient.GetByteArrayAsync(url); 
         }
 
         #endregion

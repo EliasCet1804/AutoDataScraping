@@ -12,7 +12,7 @@ namespace MobileAuslesen.Controller.StaticController
 {
     internal class HtmlDocumentController
     {
-        public static Anzeige CreateAnzeige(WebSocketData data)
+        public static async Task<Anzeige> CreateAnzeigeAsync(WebSocketData data)
         {
             //Vorabüberprüfung
             if (data == null || string.IsNullOrEmpty(data.HtmlCode) || string.IsNullOrEmpty(data.Url)) return null;
@@ -22,7 +22,7 @@ namespace MobileAuslesen.Controller.StaticController
             doc.LoadHtml(data.HtmlCode);
 
             //Erstelle anzeige
-            var anzeige = AnzeigenController.GetAnzeige(doc);
+            var anzeige = await AnzeigenController.GetAnzeigeAsync(doc);
             anzeige.URL = data.Url;
 
             return anzeige;

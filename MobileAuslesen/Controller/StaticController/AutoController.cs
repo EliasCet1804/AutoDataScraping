@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MobileAuslesen.Controller.InstanzController;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace MobileAuslesen.Controller.StaticController
 {
     internal class AutoController
     {
 
-        public static Auto GetAuto(HtmlDocument doc)
+        public static async Task<Auto> GetAutoAsync(HtmlDocument doc)
         {
             //Vorabüberprüfung
             if (doc == null) return null;
@@ -32,7 +33,12 @@ namespace MobileAuslesen.Controller.StaticController
             List<string> ausstattung = GetAusstattung(doc);
             if (ausstattung == null || ausstattung.Count < 1) return null;
 
-            GetA(doc);
+            List<Bild> images = await GetBilderAsync(doc);
+            foreach (Bild bild in images)
+            {
+                Console.WriteLine($"Breite: {bild.Image.Width} | Höhe: {bild.Image.Height}");
+            }
+            auto.Images = images;
 
             //Füge Ausstattung dem Auto hinzu
             auto.Ausstattung = ausstattung;
@@ -40,23 +46,33 @@ namespace MobileAuslesen.Controller.StaticController
             return auto;
         }
 
-        private static void GetA(HtmlDocument doc)
+        private static async Task<List<Bild>> GetBilderAsync(HtmlDocument doc)
         {
             // Vorabüberprüfung
-            if (doc == null) return;
+            if (doc == null) return null;
 
+            //Wähle Image Nodes aus
             var nodes = doc.DocumentNode.SelectNodes("//img[contains(@class, 'RG8An')]");
-            if (nodes == null || nodes.Count < 1) return;
+            if (nodes == null || nodes.Count < 1) return null;
 
+            //Fülle Imagelist
+            List<Bild> images = new List<Bild>();
             foreach (var node in nodes)
             {
+                //überprüfe URL
                 string url = node.GetAttributeValue("src", "");
-                if (!string.IsNullOrEmpty(url))
-                {
-                //TODO: URL auslesen und die bytes in ein Image
-                    Console.WriteLine("Gefundene URL: " + url);
-                }
+                if (string.IsNullOrEmpty(url)) continue;
+
+                //Erstelle Image aus URL
+                Bild img = await BildController.GetBildFromURLAsync(url);
+                if (img == null) continue;
+
+                //Füge Image der Liste hinzu
+                images.Add(img);
             }
+
+            //Gebe ImageListe zurück
+            return images;
         }
 
 
