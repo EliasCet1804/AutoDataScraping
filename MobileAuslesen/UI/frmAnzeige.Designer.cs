@@ -43,27 +43,31 @@
             this.pnlBar.Controls.Add(this.btnOeffnen);
             this.pnlBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBar.Location = new System.Drawing.Point(0, 0);
-            this.pnlBar.MaximumSize = new System.Drawing.Size(0, 43);
-            this.pnlBar.MinimumSize = new System.Drawing.Size(0, 43);
+            this.pnlBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlBar.MaximumSize = new System.Drawing.Size(0, 53);
+            this.pnlBar.MinimumSize = new System.Drawing.Size(0, 53);
             this.pnlBar.Name = "pnlBar";
-            this.pnlBar.Size = new System.Drawing.Size(1085, 43);
+            this.pnlBar.Size = new System.Drawing.Size(1447, 53);
             this.pnlBar.TabIndex = 4;
             // 
             // btnAddToExport
             // 
-            this.btnAddToExport.Location = new System.Drawing.Point(174, 12);
+            this.btnAddToExport.Location = new System.Drawing.Point(232, 15);
+            this.btnAddToExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddToExport.Name = "btnAddToExport";
-            this.btnAddToExport.Size = new System.Drawing.Size(75, 23);
+            this.btnAddToExport.Size = new System.Drawing.Size(100, 28);
             this.btnAddToExport.TabIndex = 2;
             this.btnAddToExport.Text = "Zum Export hinzufügen";
             this.btnAddToExport.UseVisualStyleBackColor = true;
+            this.btnAddToExport.Visible = false;
             this.btnAddToExport.Click += new System.EventHandler(this.btnAddToExport_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(93, 12);
+            this.btnDelete.Location = new System.Drawing.Point(124, 15);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Löschen";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -71,9 +75,10 @@
             // 
             // btnOeffnen
             // 
-            this.btnOeffnen.Location = new System.Drawing.Point(12, 12);
+            this.btnOeffnen.Location = new System.Drawing.Point(16, 15);
+            this.btnOeffnen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOeffnen.Name = "btnOeffnen";
-            this.btnOeffnen.Size = new System.Drawing.Size(75, 23);
+            this.btnOeffnen.Size = new System.Drawing.Size(100, 28);
             this.btnOeffnen.TabIndex = 0;
             this.btnOeffnen.Text = "Öffnen";
             this.btnOeffnen.UseVisualStyleBackColor = true;
@@ -87,22 +92,24 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 53);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 246F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1085, 407);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1447, 501);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // frmAnzeige
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 450);
+            this.ClientSize = new System.Drawing.Size(1447, 554);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.pnlBar);
-            this.MinimumSize = new System.Drawing.Size(1101, 489);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1462, 591);
             this.Name = "frmAnzeige";
             this.Text = "frmAnzegei2";
             this.pnlBar.ResumeLayout(false);

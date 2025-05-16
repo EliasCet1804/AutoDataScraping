@@ -38,10 +38,11 @@
             // 
             // btnVor
             // 
-            this.btnVor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVor.Location = new System.Drawing.Point(515, 3);
+            this.btnVor.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnVor.Location = new System.Drawing.Point(748, 4);
+            this.btnVor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnVor.Name = "btnVor";
-            this.btnVor.Size = new System.Drawing.Size(206, 330);
+            this.btnVor.Size = new System.Drawing.Size(179, 406);
             this.btnVor.TabIndex = 3;
             this.btnVor.Text = "----->";
             this.btnVor.UseVisualStyleBackColor = true;
@@ -49,10 +50,11 @@
             // 
             // btnZurueck
             // 
-            this.btnZurueck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnZurueck.Location = new System.Drawing.Point(3, 3);
+            this.btnZurueck.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnZurueck.Location = new System.Drawing.Point(4, 4);
+            this.btnZurueck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnZurueck.Name = "btnZurueck";
-            this.btnZurueck.Size = new System.Drawing.Size(206, 330);
+            this.btnZurueck.Size = new System.Drawing.Size(178, 406);
             this.btnZurueck.TabIndex = 2;
             this.btnZurueck.Text = "<-----";
             this.btnZurueck.UseVisualStyleBackColor = true;
@@ -61,9 +63,10 @@
             // pbMain
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMain.Location = new System.Drawing.Point(215, 3);
+            this.pbMain.Location = new System.Drawing.Point(190, 4);
+            this.pbMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(294, 330);
+            this.pbMain.Size = new System.Drawing.Size(550, 406);
             this.pbMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbMain.TabIndex = 1;
             this.pbMain.TabStop = false;
@@ -71,27 +74,29 @@
             // tlpMain
             // 
             this.tlpMain.ColumnCount = 3;
-            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpMain.Controls.Add(this.pbMain, 1, 0);
             this.tlpMain.Controls.Add(this.btnZurueck, 0, 0);
             this.tlpMain.Controls.Add(this.btnVor, 2, 0);
             this.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpMain.Location = new System.Drawing.Point(0, 0);
+            this.tlpMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tlpMain.Name = "tlpMain";
             this.tlpMain.RowCount = 1;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpMain.Size = new System.Drawing.Size(698, 336);
+            this.tlpMain.Size = new System.Drawing.Size(931, 414);
             this.tlpMain.TabIndex = 0;
             // 
             // ucImageBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tlpMain);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ucImageBox";
-            this.Size = new System.Drawing.Size(698, 336);
+            this.Size = new System.Drawing.Size(931, 414);
             this.Resize += new System.EventHandler(this.ucImageBox_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.tlpMain.ResumeLayout(false);

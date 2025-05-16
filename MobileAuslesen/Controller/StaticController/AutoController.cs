@@ -101,6 +101,7 @@ namespace MobileAuslesen.Controller.StaticController
 
             //Wähle Teschnische Daten Nodes aus
             var nodes = doc.DocumentNode.SelectNodes(ConfigController.Instance.Config.HtmlConfig.AutoTechnischeDatenNode);
+            if (nodes == null) return null;
 
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             foreach (var node in nodes)

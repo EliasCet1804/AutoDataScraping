@@ -48,6 +48,8 @@ namespace MobileAuslesen.Controller.InstanzController
 
             foreach (var domain in erlaubteDomains)
             {
+                if (uri.LocalPath.StartsWith("/fahrzeuge/details.html") == false /*|| uri.LocalPath.StartsWith("") == false*/) return false;
+
                 if (uri.Host.EndsWith(domain, StringComparison.OrdinalIgnoreCase))
                     return true;
             }

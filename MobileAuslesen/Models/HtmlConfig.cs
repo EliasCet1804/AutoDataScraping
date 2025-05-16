@@ -18,7 +18,7 @@ namespace MobileAuslesen.Models
         public string AutoTechnischeDatenFollowSibilingNode { get; set; } = "following-sibling::dd";
 
 
-        public string AnbieterNameNode { get; set; } = "//a[@class='lZcLh FWtU1 rqVIk']";//class="lZcLh FWtU1 rqVIk"
+        public string AnbieterNameNode { get; set; } = "//a[@class='FWtU1 rqVIk lZcLh']";//class="lZcLh FWtU1 rqVIk"
         public string AnbieterOrtNode { get; set; } = "//div[@class='olCKS HaBLt']";
         public string AnbieterTelNrNode { get; set; } = "//div[@class='QbZvr']";
         public string AnbieterAngemeldetSeitNode { get; set; } = "//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.With_Mde_Since_value']/div";
@@ -26,6 +26,6 @@ namespace MobileAuslesen.Models
         public string AnbieterWeiterEmpfehlungsRateNode { get; set; } = "//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.Referrals_value']";
         public string AnbieterKfzWieBeschriebenNode { get; set; } = "//h4[@class='mIdDf' and @data-testid='I18N.HOMEPAGE.Vehicle_As_Described_value']";
 
-        public string AnbieterBewerung { get; set; } = "//div[@class='fR8xz n37VS eKtqA']";
+        public string AnbieterBewerung { get; set; } = "//div[@class='fR8xz n37VS HaBLt']";
     }
 }

@@ -106,7 +106,7 @@ namespace MobileAuslesen.Controller.StaticController
             if (doc == null) return -1;
 
             var node = doc.DocumentNode.SelectSingleNode(ConfigController.Instance.Config.HtmlConfig.AnzeigePreisNode);
-            if (string.IsNullOrEmpty(node.InnerText) == true) return -1;
+            if (node == null || string.IsNullOrEmpty(node.InnerText) == true) return -1;
 
             var preisSplit = node.InnerText.Split('€');
 

@@ -25,6 +25,8 @@ namespace MobileAuslesen.UI
 
             this.Anzeige = anzeige;
 
+            this.Text = anzeige.Titel;
+
             Application.Idle += OnLoaded;
         }
 
@@ -34,8 +36,8 @@ namespace MobileAuslesen.UI
 
             tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetGrundLagenInformationen(), "Grundlagen"), 0, 0);
             tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetSonstigeInformationen(), "Sonstige Informationen"), 1, 0);
-            //tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"), 2, 0);
-            AddPictureBoxControl(this.Anzeige.Auto.Images);
+            tableLayoutPanel1.Controls.Add(new ucTextControl(this.Anzeige.GetAnbieterInformationen(), "Anbieter Informationen"), 2, 0);
+            //AddPictureBoxControl(this.Anzeige.Auto.Images);
 
             tableLayoutPanel1.Controls.Add(new ucTextControl(GetAusstatungsListBox(), "Ausstattung"), 0, 1);
 
